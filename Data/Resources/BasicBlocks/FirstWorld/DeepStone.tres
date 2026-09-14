@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://ka7aasaylfdc"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_ukyis"]
+
+[resource]
+script = ExtResource("1_ukyis")
+DisplayName = "Deep Stone"
+DisplayColor = Color(0.2901961, 0.2901961, 0.33333334, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

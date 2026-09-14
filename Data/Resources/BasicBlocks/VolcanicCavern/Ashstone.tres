@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://b34mhtejsuks3"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_onj6o"]
+
+[resource]
+script = ExtResource("1_onj6o")
+DisplayName = "Ashstone"
+SellValue = 2
+DisplayColor = Color(0.14509805, 0.14509805, 0.15294118, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

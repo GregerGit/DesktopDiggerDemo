@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://btch2vdfhbosf"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_a6t43"]
+
+[resource]
+script = ExtResource("1_a6t43")
+DisplayName = "Copper"
+Tier = 2
+SellValue = 10
+DisplayColor = Color(0.8392157, 0.47843137, 0.21568628, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

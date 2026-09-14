@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://ciucn0fvl8kbe"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_edmmv"]
+
+[resource]
+script = ExtResource("1_edmmv")
+DisplayName = "Diamond"
+Tier = 3
+SellValue = 50
+DisplayColor = Color(0.28235295, 0.84705883, 0.8980392, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

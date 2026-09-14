@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WorldDefinition" format=3 uid="uid://ckv2l80f1tppm"]
+
+[ext_resource type="Script" uid="uid://b2aif2boxw15i" path="res://Scripts/WorldDefinition.cs" id="1_i02mh"]
+[ext_resource type="Resource" uid="uid://di1pq23g8sg8i" path="res://Data/Worlds/VolcanicCavernMiningReward.tres" id="1_ypwm6"]
+
+[resource]
+script = ExtResource("1_i02mh")
+WorldId = "volcanic-cavern"
+DisplayName = "Volcanic Cavern"
+RewardCatalog = ExtResource("1_ypwm6")
+BackgroundColor = Color(0.14117648, 0.06666667, 0.101960786, 1)
+AmbientLightColor = Color(1, 0.39607844, 0.27058825, 1)
+AmbientLightEnergy = 0.35
+SunlightColor = Color(1, 0.8156863, 0.6509804, 1)
+UnlockCost = 500
+metadata/_custom_type_script = "uid://b2aif2boxw15i"

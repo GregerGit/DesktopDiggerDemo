@@ -1,0 +1,58 @@
+[gd_resource type="Resource" script_class="MiningRewardCatalog" format=3 uid="uid://di1pq23g8sg8i"]
+
+[ext_resource type="Script" uid="uid://b5hcqah7sftpl" path="res://Scripts/BlockResourceDefinition.cs" id="1_xsxmd"]
+[ext_resource type="Script" uid="uid://bwxynxqwm0m3r" path="res://Scripts/RewardTierDefinition.cs" id="2_0f2x0"]
+[ext_resource type="Resource" uid="uid://b34mhtejsuks3" path="res://Data/Resources/BasicBlocks/VolcanicCavern/Ashstone.tres" id="2_k7oc5"]
+[ext_resource type="Resource" uid="uid://gue24pl65h2k" path="res://Data/Resources/BasicBlocks/VolcanicCavern/Cinderstone.tres" id="3_7eyef"]
+[ext_resource type="Script" uid="uid://bt1enlyw6fylx" path="res://Scripts/MiningRewardCatalog.cs" id="3_eupqy"]
+[ext_resource type="Resource" uid="uid://b423sotx7fmmj" path="res://Data/Resources/BasicBlocks/VolcanicCavern/Emberstone.tres" id="4_yux2c"]
+[ext_resource type="Resource" uid="uid://c6rop7jy5fvkf" path="res://Data/Resources/BasicBlocks/VolcanicCavern/Obsidian.tres" id="5_3nbuf"]
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="7_jdl1g"]
+[ext_resource type="Resource" uid="uid://drcibsb1j7eus" path="res://Data/Resources/Finds/Tier2/Iron.tres" id="8_orqkw"]
+[ext_resource type="Resource" uid="uid://btch2vdfhbosf" path="res://Data/Resources/Finds/Tier2/Copper.tres" id="9_e7nyu"]
+[ext_resource type="Resource" uid="uid://dxgesliwpgttf" path="res://Data/Resources/Finds/Tier3/Gold.tres" id="10_ywdar"]
+[ext_resource type="Resource" uid="uid://ciucn0fvl8kbe" path="res://Data/Resources/Finds/Tier3/Diamond.tres" id="11_at0ox"]
+
+[sub_resource type="Resource" id="Resource_vqrxc"]
+script = ExtResource("1_xsxmd")
+Resource = ExtResource("2_k7oc5")
+metadata/_custom_type_script = "uid://b5hcqah7sftpl"
+
+[sub_resource type="Resource" id="Resource_cv1xr"]
+script = ExtResource("1_xsxmd")
+BlockKind = 1
+Resource = ExtResource("3_7eyef")
+metadata/_custom_type_script = "uid://b5hcqah7sftpl"
+
+[sub_resource type="Resource" id="Resource_kcecv"]
+script = ExtResource("1_xsxmd")
+BlockKind = 2
+Resource = ExtResource("4_yux2c")
+metadata/_custom_type_script = "uid://b5hcqah7sftpl"
+
+[sub_resource type="Resource" id="Resource_ywbao"]
+script = ExtResource("1_xsxmd")
+BlockKind = 3
+Resource = ExtResource("5_3nbuf")
+metadata/_custom_type_script = "uid://b5hcqah7sftpl"
+
+[sub_resource type="Resource" id="Resource_evly7"]
+script = ExtResource("2_0f2x0")
+ShallowSpawnChance = 0.05
+DeepSpawnChance = 0.1
+Resources = Array[ExtResource("7_jdl1g")]([ExtResource("8_orqkw"), ExtResource("9_e7nyu")])
+metadata/_custom_type_script = "uid://bwxynxqwm0m3r"
+
+[sub_resource type="Resource" id="Resource_fc4wm"]
+script = ExtResource("2_0f2x0")
+Tier = 3
+ShallowSpawnChance = 0.005
+DeepSpawnChance = 0.01
+Resources = Array[ExtResource("7_jdl1g")]([ExtResource("10_ywdar"), ExtResource("11_at0ox")])
+metadata/_custom_type_script = "uid://bwxynxqwm0m3r"
+
+[resource]
+script = ExtResource("3_eupqy")
+BaseResources = Array[ExtResource("1_xsxmd")]([SubResource("Resource_vqrxc"), SubResource("Resource_cv1xr"), SubResource("Resource_kcecv"), SubResource("Resource_ywbao")])
+RewardTiers = Array[ExtResource("2_0f2x0")]([SubResource("Resource_evly7"), SubResource("Resource_fc4wm")])
+metadata/_custom_type_script = "uid://bt1enlyw6fylx"

@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://ebk2p0da5wyi"]
+
+[ext_resource type="Script" uid="uid://c4itrk3qbow6" path="res://Scripts/MainMenu.cs" id="1_a2ivp"]
+[ext_resource type="Resource" uid="uid://dtd02pcd521br" path="res://Data/Worlds/Backyard.tres" id="2_mj0i0"]
+[ext_resource type="Script" uid="uid://b2aif2boxw15i" path="res://Scripts/WorldDefinition.cs" id="2_s3ie0"]
+[ext_resource type="Resource" uid="uid://ckv2l80f1tppm" path="res://Data/Worlds/VolcanicCavern.tres" id="4_p4pvn"]
+
+[node name="MainMenu" type="Control" unique_id=656047405 node_paths=PackedStringArray("stashLabel", "worldSelector", "upgradeStorageButton", "upgradeSpeedButton", "removeWorldLayerButton", "startMissionButton", "unlockWorldButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a2ivp")
+stashLabel = NodePath("CenterContainer/VBoxContainer/StashLabel")
+worldSelector = NodePath("CenterContainer/VBoxContainer/WorldSelector")
+upgradeStorageButton = NodePath("CenterContainer/VBoxContainer/UpgradeStorageButton")
+upgradeSpeedButton = NodePath("CenterContainer/VBoxContainer/UpgradeSpeedButton")
+removeWorldLayerButton = NodePath("CenterContainer/VBoxContainer/RemoveWorldLayerButton")
+startMissionButton = NodePath("CenterContainer/VBoxContainer/StartMissionButton")
+unlockWorldButton = NodePath("CenterContainer/VBoxContainer/UnlockWorldButton")
+availableWorlds = Array[ExtResource("2_s3ie0")]([ExtResource("2_mj0i0"), ExtResource("4_p4pvn")])
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1271676482]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=528368730]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1585662123]
+layout_mode = 2
+text = "Desktop Digger"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/VBoxContainer" unique_id=468954985]
+layout_mode = 2
+text = "Choose a world and let your miner work"
+
+[node name="StashLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1629552328]
+layout_mode = 2
+
+[node name="WorldSelector" type="OptionButton" parent="CenterContainer/VBoxContainer" unique_id=22343916]
+layout_mode = 2
+
+[node name="UnlockWorldButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1042581598]
+layout_mode = 2
+
+[node name="UpgradeStorageButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=67850729]
+layout_mode = 2
+text = "Upgrade Storage +25"
+
+[node name="UpgradeSpeedButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1673938119]
+layout_mode = 2
+text = "Upgrade Speed 20%"
+
+[node name="RemoveWorldLayerButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=163764182]
+layout_mode = 2
+text = "Remove World Layer -1"
+
+[node name="StartMissionButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=118513981]
+layout_mode = 2
+text = "Start First World"

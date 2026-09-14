@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://c6rop7jy5fvkf"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_e5cea"]
+
+[resource]
+script = ExtResource("1_e5cea")
+DisplayName = "Obsidian"
+SellValue = 2
+DisplayColor = Color(0.41568628, 0.14117648, 0.15686275, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

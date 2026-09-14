@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://gue24pl65h2k"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_nyt53"]
+
+[resource]
+script = ExtResource("1_nyt53")
+DisplayName = "Cinderstone"
+SellValue = 2
+DisplayColor = Color(0.22745098, 0.19607843, 0.20392157, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

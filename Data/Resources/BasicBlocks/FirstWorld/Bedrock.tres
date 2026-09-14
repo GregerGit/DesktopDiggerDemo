@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://dwd4js6ubq38n"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_ckabm"]
+
+[resource]
+script = ExtResource("1_ckabm")
+DisplayName = "Bedrock"
+DisplayColor = Color(0.14509805, 0.14509805, 0.16862746, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

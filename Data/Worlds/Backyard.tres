@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WorldDefinition" format=3 uid="uid://dtd02pcd521br"]
+
+[ext_resource type="Script" uid="uid://b2aif2boxw15i" path="res://Scripts/WorldDefinition.cs" id="1_bgoty"]
+[ext_resource type="Resource" uid="uid://cqswn4srxkv0s" path="res://Data/Worlds/BackyardMiningReward.tres" id="1_naa10"]
+
+[resource]
+script = ExtResource("1_bgoty")
+DisplayName = "Backyard"
+RewardCatalog = ExtResource("1_naa10")
+UnlockedByDefault = true
+metadata/_custom_type_script = "uid://b2aif2boxw15i"

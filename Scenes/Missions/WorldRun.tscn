@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bmwwth7uu1cns"]
+
+[ext_resource type="Script" uid="uid://baox44w7xtlfa" path="res://Scripts/WorldRun.cs" id="1_jk7f4"]
+
+[node name="WorldRun" type="Node3D" unique_id=879729636]
+script = ExtResource("1_jk7f4")

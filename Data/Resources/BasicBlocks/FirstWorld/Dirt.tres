@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://cgqgvm6rtkxpt"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_id6co"]
+
+[resource]
+script = ExtResource("1_id6co")
+DisplayName = "Dirt"
+DisplayColor = Color(0.5294118, 0.3882353, 0.24705882, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

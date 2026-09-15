@@ -25,6 +25,7 @@ public partial class GameState : Node
 	
 
 	public WorldDefinition SelectedWorld { get; private set; } = null!;
+	public string SelectedWorldId { get; private set; } = "";
 	
 
 	public int MinerStorageCapacity =>
@@ -63,6 +64,9 @@ public partial class GameState : Node
 	public void SelectWorld(WorldDefinition world)
 	{
 		SelectedWorld = world;
+		SelectedWorldId = world.WorldId;
+
+		SaveGame();
 	}
 
 	public void BankRun(int amount)
@@ -159,6 +163,7 @@ public partial class GameState : Node
 			StashMoney = StashMoney,
 			StorageUpgradeLevel = StorageUpgradeLevel,
 			UnlockedWorldIds = new List<string>(unlockedWorldIds),
+			SelectedWorldId = SelectedWorldId,
 		};
 
 		foreach (KeyValuePair<string, WorldProgress> entry in worldProgress)
@@ -194,6 +199,8 @@ public partial class GameState : Node
 
 			StashMoney = saveData.StashMoney;
 			StorageUpgradeLevel = saveData.StorageUpgradeLevel;
+			SelectedWorldId = saveData.SelectedWorldId;
+			
 			if (saveData.UnlockedWorldIds != null)
 			{
 				foreach (string worldId in saveData.UnlockedWorldIds)

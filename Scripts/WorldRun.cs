@@ -5,9 +5,8 @@ public partial class WorldRun : Node3D
 {
 	[Export(PropertyHint.Range, "1, 50, 1")]
 	private float simulationSpeed = 1f;
-
 	private Button abortButton = null!;
-
+	
 	private MiningRewardCatalog miningRewardCatalog = null!;	
 
 	private const int RenderedLayerCount = 5;
@@ -17,6 +16,7 @@ public partial class WorldRun : Node3D
 	
 	private Camera3D camera = null!;
 	private int currentMiningLayer;
+	private float cameraDistanceScale = 0.8f; 
 
 	private RunInventory inventory = null!;
 	private Label statusLabel;
@@ -62,10 +62,10 @@ public partial class WorldRun : Node3D
 		
 		if (miner == null)
 			return;
-		//TESTING
+		
 		float timeStep = (float)delta * simulationSpeed;
 		
-		minerAnimationTime += timeStep * gameState.SelectedWorldMinerSpeedMultiplier;
+		minerAnimationTime += timeStep; 
 
 		if (!hasTarget)
 		{
@@ -186,8 +186,8 @@ public partial class WorldRun : Node3D
 		statusLabel.Text =
 			$"World depth: {worldChunk.StartingDepth + currentMiningLayer + 1} / {WorldChunk.TotalLayers}\n" +
 			$"Storage: {inventory.UsedCapacity} / {inventory.Capacity}\n" +
-			$"Temporary run value: ${inventory.TemporaryValue}\n" +
-			$"Last find: {lastFindName}\n\n" +
+			$"Temporary run value: ${inventory.TemporaryValue}\n\n" + //extra string space
+			// $"Last find: {lastFindName}\n\n" +
 			cargoText;
 	}
 	private void ChooseNextBlock()
@@ -255,7 +255,7 @@ public partial class WorldRun : Node3D
 			CompleteRun("Storage full");
 			return;
 		}
-
+		
 		nextBlockIndex++;
 		ChooseNextBlock();
 	}
@@ -295,7 +295,7 @@ public partial class WorldRun : Node3D
 		{
 			Projection = Camera3D.ProjectionType.Orthogonal,
 			Size = 21f,
-			Position = new Vector3(16f, 16f, 16f)
+			Position = new Vector3(16f, 16f, 16f) 
 		};
 
 		AddChild(camera);
@@ -303,13 +303,13 @@ public partial class WorldRun : Node3D
 	}
 	private void UpdateCameraForCurrentLayer()
 	{
-		camera.Position = new Vector3(
-			16f,
-			16f - currentMiningLayer,
-			16f
-		);
+		Vector3 target = new Vector3(0f, -currentMiningLayer, 0f);
+		Vector3 baseOffset = new Vector3(16f, 8f, 16f); // your current offset: (16, 11-3, 16)
 
-		camera.LookAt(new Vector3(0f, -currentMiningLayer, 0f));
+		camera.Position = target + baseOffset * cameraDistanceScale;
+		camera.LookAt(target);
+		
+		
 	}
 	private void CreateChunkPreview()
 	{
@@ -356,6 +356,9 @@ public partial class WorldRun : Node3D
 		hasTarget = false;
 		AnimateIdle();
 
+		//Play Sound WIP
+		PlayRunCompleteSound();
+
 		gameState.BankRun(inventory.TemporaryValue);
 
 		statusLabel.Text +=
@@ -368,6 +371,18 @@ public partial class WorldRun : Node3D
 		);
 
 		GetTree().ChangeSceneToFile("res://Scenes/Menu/MainMenu.tscn");
+	}
+
+	private void PlayRunCompleteSound()
+	{
+		var Aplayer = new AudioStreamPlayer();
+		AddChild(Aplayer);
+		Aplayer.Stream = GD.Load<AudioStream>("res://Assets/Sounds/DigComplete/Cash Register.wav");
+		Aplayer.VolumeDb = -25f;
+		Aplayer.Play();
+
+		// Clean up once the sound finishes playing
+		Aplayer.Finished += () => Aplayer.QueueFree();
 	}
 	private void CreateMinerPreview()
 	{

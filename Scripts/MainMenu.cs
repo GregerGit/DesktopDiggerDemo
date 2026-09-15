@@ -47,8 +47,20 @@ public partial class MainMenu : Control
 			return;
 		}
 
-		worldSelector.Select(0);
-		SelectWorld(0);
+		int selectedIndex = 0;
+
+		for (int index = 0; index < availableWorlds.Count; index++)
+		{
+			if (availableWorlds[index].WorldId ==
+				GetNode<GameState>("/root/GameState").SelectedWorldId)
+			{
+				selectedIndex = index;
+				break;
+			}
+		}
+
+		worldSelector.Select(selectedIndex);
+		SelectWorld(selectedIndex);
 	}
 	private void UnlockSelectedWorld()
 	{
@@ -107,7 +119,7 @@ public partial class MainMenu : Control
 			$"Miner speed: {gameState.SelectedWorldMinerSpeedMultiplier:0.0}x";
 
 		upgradeStorageButton.Text =
-			$"Increase storage by 25 (${gameState.NextStorageUpgradeCost})";
+			$"Increase storage by 25 (- ${gameState.NextStorageUpgradeCost})";
 
 		upgradeStorageButton.Disabled =
 			!gameState.CanUpgradeStorage ||
@@ -115,7 +127,7 @@ public partial class MainMenu : Control
 			gameState.NextStorageUpgradeCost;
 
 		upgradeSpeedButton.Text =
-			$"Increase miner speed by 20% (${gameState.NextSelectedWorldSpeedUpgradeCost})";
+			$"Increase miner speed by 20% (- ${gameState.NextSelectedWorldSpeedUpgradeCost})";
 
 		upgradeSpeedButton.Disabled =
 			!gameState.CanUpgradeSelectedWorldSpeed ||
@@ -124,7 +136,7 @@ public partial class MainMenu : Control
 
 		removeWorldLayerButton.Text =
 			$"Excavate {gameState.SelectedWorld.DisplayName} by 1 layer " +
-			$"(${gameState.NextSelectedWorldLayerRemovalCost})";
+			$"(- ${gameState.NextSelectedWorldLayerRemovalCost})";
 
 		removeWorldLayerButton.Disabled =
 			!worldIsUnlocked ||

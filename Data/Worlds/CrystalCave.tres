@@ -13,5 +13,5 @@ AmbientLightColor = Color(0.29795697, 0.5793209, 0.7150089, 1)
 AmbientLightEnergy = 0.3
 SunlightColor = Color(0.65742135, 0.84032553, 0.9370525, 1)
 UnlockCost = 20000
-AutorunUnlockCost = 1
+AutorunUnlockCost = 25000
 metadata/_custom_type_script = "uid://b2aif2boxw15i"

@@ -39,7 +39,7 @@ public partial class GameState : Node
 		GetSelectedWorldProgress().RemovedLayers;
 
 	public int NextSelectedWorldLayerRemovalCost =>
-		BaseLayerRemovalCost * (SelectedWorldRemovedLayers * 2);
+		BaseLayerRemovalCost * (SelectedWorldRemovedLayers * 2) +100;
 
 	public bool CanRemoveSelectedWorldLayer =>
 		SelectedWorldRemovedLayers < MaxRemovedLayers;

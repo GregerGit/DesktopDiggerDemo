@@ -40,6 +40,8 @@ public partial class WorldRun : Node3D
 	private bool isMining;
 	private float miningProgress;
 
+	private bool runWasManual;
+
 	private float CurrentMinerHeight => MinerHeight - currentMiningLayer;
 
 	public override void _Ready()
@@ -55,6 +57,8 @@ public partial class WorldRun : Node3D
 		CreateMinerPreview();
 		CreateHud();
 		ChooseNextBlock();
+
+		runWasManual = gameState.NextRunIsManual;
 	}
 
 	public override void _Process(double delta)
@@ -360,6 +364,8 @@ public partial class WorldRun : Node3D
 		PlayRunCompleteSound();
 
 		gameState.BankRun(inventory.TemporaryValue);
+		if (runWasManual)
+		gameState.OnMissionCompletedManually();
 
 		statusLabel.Text +=
 			$"\n\n{reason}." +

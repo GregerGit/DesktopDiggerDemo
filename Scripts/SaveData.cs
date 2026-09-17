@@ -6,7 +6,8 @@ public sealed class SaveData
 	public int StorageUpgradeLevel { get; set; }
 
 	public List<string> UnlockedWorldIds { get; set; } = new();
-	
+	public List<string> UnlockedAutorunIds { get; set; } = new();
+
 	public string SelectedWorldId { get; set; } = "";
 	public Dictionary<string, WorldProgressSaveData>
 		WorldProgressById { get; set; } = new();

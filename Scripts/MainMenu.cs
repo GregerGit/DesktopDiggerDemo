@@ -9,21 +9,95 @@ public partial class MainMenu : Control
 	[Export] private Button removeWorldLayerButton = null!;
 	[Export] private Button startMissionButton = null!;
 	[Export] private Button unlockWorldButton = null!;
+	[Export] private Button unlockAutorunButton = null!;
+	[Export] private CheckButton autoRunCheckButton = null!;
+	[Export] private Label autoRunChargesLabel = null!;
 
 	[Export] private Godot.Collections.Array<WorldDefinition> availableWorlds = new();
+
+	private bool autoRunPending;
+	private float autoRunTimer;
+	private const float AutoRunCountdownSeconds = 5f;
 
 	public override void _Ready()
 	{
 		upgradeStorageButton.Pressed += UpgradeStorage;
 		upgradeSpeedButton.Pressed += UpgradeSpeed;
 		removeWorldLayerButton.Pressed += RemoveWorldLayer;
-		startMissionButton.Pressed += StartMission;
+		startMissionButton.Pressed += OnStartMissionPressed;
 		unlockWorldButton.Pressed += UnlockSelectedWorld;
 		worldSelector.ItemSelected += SelectWorld;
-
+		autoRunCheckButton.Toggled += OnAutoRunToggled;
+		unlockAutorunButton.Pressed += UnlockSelectedWorldAutoRun;
 		PopulateWorldSelector();
+		TryBeginAutoRunCountdown();
+	}
+	public override void _Process(double delta)
+	{
+		if (!autoRunPending)
+			return;
+
+		autoRunTimer -= (float)delta;
+
+		if (autoRunTimer <= 0f)
+		{
+			autoRunPending = false;
+			FireAutoRun();
+		}
 	}
 
+	private void OnStartMissionPressed()
+	{
+		GetNode<GameState>("/root/GameState").PrepareManualRun();
+		StartMission();
+	}
+
+	private void TryBeginAutoRunCountdown()
+	{
+		var gameState = GetNode<GameState>("/root/GameState");
+
+		if (!gameState.IsSelectedWorldAutoUnlocked() || !gameState.IsAutoRunActive)
+		{
+			autoRunPending = false;
+			return;
+		}
+
+		if (gameState.AutoRunCharges <= 0)
+		{
+			gameState.SetAutoRunActive(false); // out of charges -> turn autorun off for real
+			UpdateMenu(); // reflect the toggle turning off immediately
+			autoRunPending = false;
+			return;
+		}
+
+		autoRunPending = true;
+		autoRunTimer = AutoRunCountdownSeconds;
+	}
+
+	private void FireAutoRun()
+	{
+		var gameState = GetNode<GameState>("/root/GameState");
+
+		if (!gameState.TryConsumeAutoRunCharge())
+			return;
+
+		gameState.PrepareAutoRun();
+		StartMission();
+	}
+
+	private void OnAutoRunToggled(bool toggledOn)
+	{
+		var gameState = GetNode<GameState>("/root/GameState");
+
+		if (toggledOn && gameState.AutoRunCharges <= 0)
+		{
+			autoRunCheckButton.SetPressedNoSignal(false);
+			return;
+		}
+
+		gameState.SetAutoRunActive(toggledOn);
+		TryBeginAutoRunCountdown();
+	}
 	private void PopulateWorldSelector()
 	{
 		worldSelector.Clear();
@@ -70,6 +144,15 @@ public partial class MainMenu : Control
 
 		UpdateMenu();
 	}
+	private void UnlockSelectedWorldAutoRun()
+	{
+		var gameState = GetNode<GameState>("/root/GameState");
+
+		gameState.TryUnlockSelectedWorldAutoRun();
+
+		UpdateMenu();
+		TryBeginAutoRunCountdown();
+	}
 	private void SelectWorld(long selectedIndex)
 	{
 		var gameState = GetNode<GameState>("/root/GameState");
@@ -77,6 +160,7 @@ public partial class MainMenu : Control
 		gameState.SelectWorld(availableWorlds[(int)selectedIndex]);
 
 		UpdateMenu();
+		TryBeginAutoRunCountdown();
 	}
 
 	private void StartMission()
@@ -112,6 +196,8 @@ public partial class MainMenu : Control
 	{
 		var gameState = GetNode<GameState>("/root/GameState");
 		bool worldIsUnlocked = gameState.IsSelectedWorldUnlocked();
+		bool autoRunIsUnlocked = gameState.IsSelectedWorldAutoUnlocked();
+		bool hasCharges = gameState.AutoRunCharges > 0;
 
 		stashLabel.Text =
 			$"Stash: ${gameState.StashMoney}\n" +
@@ -164,5 +250,20 @@ public partial class MainMenu : Control
 		unlockWorldButton.Disabled =
 			worldIsUnlocked ||
 			gameState.StashMoney < gameState.SelectedWorld.UnlockCost;
+
+		unlockAutorunButton.Visible = !autoRunIsUnlocked;
+
+		unlockAutorunButton.Text =
+			$"Unlock autorun for {gameState.SelectedWorld.DisplayName} " +
+			$"(${gameState.SelectedWorld.AutorunUnlockCost})";
+
+		unlockAutorunButton.Disabled =
+			autoRunIsUnlocked ||
+			gameState.StashMoney < gameState.SelectedWorld.AutorunUnlockCost;
+
+		autoRunCheckButton.SetPressedNoSignal(gameState.IsAutoRunActive);
+		autoRunCheckButton.Disabled = !autoRunIsUnlocked || gameState.AutoRunCharges <= 0;
+
+		autoRunChargesLabel.Text = $"Autorun charges: {gameState.AutoRunCharges}";
 	}
 }

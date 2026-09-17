@@ -7,7 +7,8 @@ public partial class GameState : Node
 {
 	private const string SavePath = "user://desktop_digger_save.json";
 	private readonly HashSet<string> unlockedWorldIds = new();
-	
+	private readonly HashSet<string> unlockedAutorunIds = new();
+
 	private const int BaseStorageCapacity = 25;
 	private const int StoragePerUpgrade = 25;
 	private const int BaseStorageUpgradeCost = 50;
@@ -22,11 +23,11 @@ public partial class GameState : Node
 
 	public int StashMoney { get; private set; }
 	public int StorageUpgradeLevel { get; private set; }
-	
 
 	public WorldDefinition SelectedWorld { get; private set; } = null!;
 	public string SelectedWorldId { get; private set; } = "";
-	
+
+	public bool NextRunIsManual { get; private set; } = true;
 
 	public int MinerStorageCapacity =>
 		BaseStorageCapacity + StorageUpgradeLevel * StoragePerUpgrade;
@@ -44,7 +45,7 @@ public partial class GameState : Node
 		SelectedWorldRemovedLayers < MaxRemovedLayers;
 
 	public bool CanUpgradeStorage =>
-	MinerStorageCapacity < MaxStorageCapacity;
+		MinerStorageCapacity < MaxStorageCapacity;
 
 	public int SelectedWorldSpeedUpgradeLevel =>
 		GetSelectedWorldProgress().SpeedUpgradeLevel;
@@ -57,10 +58,14 @@ public partial class GameState : Node
 
 	public bool CanUpgradeSelectedWorldSpeed => true;
 
+	public bool IsAutoRunActive => GetSelectedWorldProgress().AutoRunActive;
+	public int AutoRunCharges => GetSelectedWorldProgress().AutoRunCharges;
+
 	public override void _Ready()
 	{
 		LoadGame();
 	}
+
 	public void SelectWorld(WorldDefinition world)
 	{
 		SelectedWorld = world;
@@ -69,10 +74,74 @@ public partial class GameState : Node
 		SaveGame();
 	}
 
+	public void PrepareManualRun()
+	{
+		NextRunIsManual = true;
+	}
+
+	public void PrepareAutoRun()
+	{
+		NextRunIsManual = false;
+	}
+
+	public void OnMissionCompletedManually()
+	{
+		GetSelectedWorldProgress().AddAutoRunCharge();
+		SaveGame();
+	}
+
+	public bool TryConsumeAutoRunCharge()
+	{
+		bool consumed = GetSelectedWorldProgress().TryConsumeAutoRunCharge();
+
+		if (consumed)
+			SaveGame();
+
+		return consumed;
+	}
+
+	public bool IsAutorunUnlocked(WorldDefinition world)
+	{
+		return world.AutorunUnlocked ||
+			unlockedAutorunIds.Contains(world.WorldId);
+	}
+
+	public bool IsSelectedWorldAutoUnlocked()
+	{
+		return IsAutorunUnlocked(SelectedWorld);
+	}
+
+	public void SetAutoRunActive(bool active)
+	{
+		if (!IsSelectedWorldAutoUnlocked())
+			return;
+
+		GetSelectedWorldProgress().SetAutoRunActive(active);
+		SaveGame();
+	}
+
+	public bool TryUnlockSelectedWorldAutoRun()
+	{
+		if (IsSelectedWorldAutoUnlocked())
+			return true;
+
+		if (StashMoney < SelectedWorld.AutorunUnlockCost)
+			return false;
+
+		StashMoney -= SelectedWorld.AutorunUnlockCost;
+
+		unlockedAutorunIds.Add(SelectedWorld.WorldId);
+
+		SaveGame();
+
+		return true;
+	}
+
 	public void BankRun(int amount)
 	{
 		if (amount > 0)
 			StashMoney += amount;
+
 		SaveGame();
 	}
 
@@ -90,6 +159,7 @@ public partial class GameState : Node
 
 		return true;
 	}
+
 	public bool TryUpgradeSelectedWorldSpeed()
 	{
 		if (StashMoney < NextSelectedWorldSpeedUpgradeCost)
@@ -103,6 +173,7 @@ public partial class GameState : Node
 
 		return true;
 	}
+
 	public bool TryRemoveSelectedWorldLayer()
 	{
 		if (!CanRemoveSelectedWorldLayer)
@@ -114,6 +185,7 @@ public partial class GameState : Node
 		StashMoney -= NextSelectedWorldLayerRemovalCost;
 		GetSelectedWorldProgress().RemoveLayer();
 		SaveGame();
+
 		return true;
 	}
 
@@ -129,6 +201,7 @@ public partial class GameState : Node
 
 		return progress;
 	}
+
 	public bool IsWorldUnlocked(WorldDefinition world)
 	{
 		return world.UnlockedByDefault ||
@@ -156,6 +229,7 @@ public partial class GameState : Node
 
 		return true;
 	}
+
 	private void SaveGame()
 	{
 		var saveData = new SaveData
@@ -163,6 +237,7 @@ public partial class GameState : Node
 			StashMoney = StashMoney,
 			StorageUpgradeLevel = StorageUpgradeLevel,
 			UnlockedWorldIds = new List<string>(unlockedWorldIds),
+			UnlockedAutorunIds = new List<string>(unlockedAutorunIds),
 			SelectedWorldId = SelectedWorldId,
 		};
 
@@ -172,7 +247,9 @@ public partial class GameState : Node
 				new WorldProgressSaveData
 				{
 					RemovedLayers = entry.Value.RemovedLayers,
-					SpeedUpgradeLevel = entry.Value.SpeedUpgradeLevel
+					SpeedUpgradeLevel = entry.Value.SpeedUpgradeLevel,
+					AutoRunCharges = entry.Value.AutoRunCharges,
+					AutoRunActive = entry.Value.AutoRunActive
 				};
 		}
 
@@ -200,12 +277,20 @@ public partial class GameState : Node
 			StashMoney = saveData.StashMoney;
 			StorageUpgradeLevel = saveData.StorageUpgradeLevel;
 			SelectedWorldId = saveData.SelectedWorldId;
-			
+
 			if (saveData.UnlockedWorldIds != null)
 			{
 				foreach (string worldId in saveData.UnlockedWorldIds)
 				{
 					unlockedWorldIds.Add(worldId);
+				}
+			}
+
+			if (saveData.UnlockedAutorunIds != null)
+			{
+				foreach (string worldId in saveData.UnlockedAutorunIds)
+				{
+					unlockedAutorunIds.Add(worldId);
 				}
 			}
 
@@ -215,7 +300,9 @@ public partial class GameState : Node
 			{
 				worldProgress[entry.Key] = new WorldProgress(
 					entry.Value.RemovedLayers,
-					entry.Value.SpeedUpgradeLevel
+					entry.Value.SpeedUpgradeLevel,
+					entry.Value.AutoRunCharges,
+					entry.Value.AutoRunActive
 				);
 			}
 		}

@@ -17,4 +17,7 @@ public partial class WorldDefinition : Resource
 
 	[Export] public bool UnlockedByDefault = false;
 	[Export] public int UnlockCost = 0;
+
+	[Export] public bool AutorunUnlocked = false;
+	[Export] public int AutorunUnlockCost = 0;
 }

@@ -70,10 +70,10 @@ public sealed class WorldChunk
 		if (layer < 16)
 			return BlockKind.Dirt;
 
-		if (layer < 36)
+		if (layer < 32)
 			return BlockKind.Stone;
 
-		if (layer < 56)
+		if (layer < 48)
 			return BlockKind.DeepStone;
 
 		return BlockKind.Bedrock;

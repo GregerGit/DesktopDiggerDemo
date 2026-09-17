@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="WorldDefinition" format=3 uid="uid://djoiobvwcfl71"]
+
+[ext_resource type="Script" uid="uid://b2aif2boxw15i" path="res://Scripts/WorldDefinition.cs" id="1_avmqj"]
+[ext_resource type="Resource" uid="uid://hgnqwf8k8mrc" path="res://Data/Worlds/CrystalCaveMiningReward.tres" id="1_moyj7"]
+
+[resource]
+script = ExtResource("1_avmqj")
+WorldId = "CrystalCave"
+DisplayName = "Crystal Cave"
+RewardCatalog = ExtResource("1_moyj7")
+BackgroundColor = Color(0.35871208, 0.65027016, 0.7929524, 1)
+AmbientLightColor = Color(0.29795697, 0.5793209, 0.7150089, 1)
+AmbientLightEnergy = 0.3
+SunlightColor = Color(0.65742135, 0.84032553, 0.9370525, 1)
+UnlockCost = 20000
+AutorunUnlockCost = 1
+metadata/_custom_type_script = "uid://b2aif2boxw15i"

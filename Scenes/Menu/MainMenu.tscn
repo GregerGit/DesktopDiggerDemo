@@ -4,6 +4,7 @@
 [ext_resource type="Resource" uid="uid://dtd02pcd521br" path="res://Data/Worlds/Backyard.tres" id="2_mj0i0"]
 [ext_resource type="Script" uid="uid://b2aif2boxw15i" path="res://Scripts/WorldDefinition.cs" id="2_s3ie0"]
 [ext_resource type="Resource" uid="uid://ckv2l80f1tppm" path="res://Data/Worlds/VolcanicCavern.tres" id="4_p4pvn"]
+[ext_resource type="Resource" uid="uid://djoiobvwcfl71" path="res://Data/Worlds/CrystalCave.tres" id="5_s3ie0"]
 
 [node name="MainMenu" type="Control" unique_id=656047405 node_paths=PackedStringArray("stashLabel", "worldSelector", "upgradeStorageButton", "upgradeSpeedButton", "removeWorldLayerButton", "startMissionButton", "unlockWorldButton", "unlockAutorunButton", "autoRunCheckButton", "autoRunChargesLabel")]
 layout_mode = 3
@@ -23,7 +24,7 @@ unlockWorldButton = NodePath("CenterContainer/VBoxContainer/UnlockWorldButton")
 unlockAutorunButton = NodePath("CenterContainer/VBoxContainer/UnlockAutoRunButton")
 autoRunCheckButton = NodePath("CenterContainer/VBoxContainer/CheckButton")
 autoRunChargesLabel = NodePath("CenterContainer/VBoxContainer/AutoRunChargesLabel")
-availableWorlds = Array[ExtResource("2_s3ie0")]([ExtResource("2_mj0i0"), ExtResource("4_p4pvn")])
+availableWorlds = Array[ExtResource("2_s3ie0")]([ExtResource("2_mj0i0"), ExtResource("4_p4pvn"), ExtResource("5_s3ie0")])
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1271676482]
 layout_mode = 1

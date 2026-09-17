@@ -205,7 +205,7 @@ public partial class MainMenu : Control
 			$"Miner speed: {gameState.SelectedWorldMinerSpeedMultiplier:0.0}x";
 
 		upgradeStorageButton.Text =
-			$"Increase storage by 25 (- ${gameState.NextStorageUpgradeCost})";
+			$"Increase storage by 25 (${gameState.NextStorageUpgradeCost})";
 
 		upgradeStorageButton.Disabled =
 			!gameState.CanUpgradeStorage ||
@@ -213,7 +213,7 @@ public partial class MainMenu : Control
 			gameState.NextStorageUpgradeCost;
 
 		upgradeSpeedButton.Text =
-			$"Increase miner speed by 20% (- ${gameState.NextSelectedWorldSpeedUpgradeCost})";
+			$"Increase miner speed by 25% (${gameState.NextSelectedWorldSpeedUpgradeCost})";
 
 		upgradeSpeedButton.Disabled =
 			!gameState.CanUpgradeSelectedWorldSpeed ||
@@ -222,7 +222,7 @@ public partial class MainMenu : Control
 
 		removeWorldLayerButton.Text =
 			$"Excavate {gameState.SelectedWorld.DisplayName} by 1 layer " +
-			$"(- ${gameState.NextSelectedWorldLayerRemovalCost})";
+			$"(${gameState.NextSelectedWorldLayerRemovalCost})";
 
 		removeWorldLayerButton.Disabled =
 			!worldIsUnlocked ||
@@ -261,6 +261,9 @@ public partial class MainMenu : Control
 			autoRunIsUnlocked ||
 			gameState.StashMoney < gameState.SelectedWorld.AutorunUnlockCost;
 
+		autoRunCheckButton.Visible = autoRunIsUnlocked;
+		autoRunChargesLabel.Visible = autoRunIsUnlocked;
+		
 		autoRunCheckButton.SetPressedNoSignal(gameState.IsAutoRunActive);
 		autoRunCheckButton.Disabled = !autoRunIsUnlocked || gameState.AutoRunCharges <= 0;
 

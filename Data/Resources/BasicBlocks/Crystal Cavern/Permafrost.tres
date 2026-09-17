@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://crx2cwk2fjxav"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_e4ehd"]
+
+[resource]
+script = ExtResource("1_e4ehd")
+DisplayName = "Permafrost"
+SellValue = 3
+DisplayColor = Color(0.043137256, 0.14509805, 0.27058825, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

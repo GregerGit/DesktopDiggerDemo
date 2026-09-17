@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://jahkodaoy10t"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_5bkjc"]
+
+[resource]
+script = ExtResource("1_5bkjc")
+DisplayName = "Emerald"
+SellValue = 150
+DisplayColor = Color(0.3137255, 0.78431374, 0.47058824, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

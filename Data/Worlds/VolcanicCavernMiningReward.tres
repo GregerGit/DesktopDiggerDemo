@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://btch2vdfhbosf" path="res://Data/Resources/Finds/Tier2/Copper.tres" id="9_e7nyu"]
 [ext_resource type="Resource" uid="uid://dxgesliwpgttf" path="res://Data/Resources/Finds/Tier3/Gold.tres" id="10_ywdar"]
 [ext_resource type="Resource" uid="uid://ciucn0fvl8kbe" path="res://Data/Resources/Finds/Tier3/Diamond.tres" id="11_at0ox"]
+[ext_resource type="Resource" uid="uid://p44xy2s1668p" path="res://Data/Resources/Finds/Tier4/Titanium.tres" id="12_7eyef"]
 
 [sub_resource type="Resource" id="Resource_vqrxc"]
 script = ExtResource("1_xsxmd")
@@ -38,21 +39,30 @@ metadata/_custom_type_script = "uid://b5hcqah7sftpl"
 
 [sub_resource type="Resource" id="Resource_evly7"]
 script = ExtResource("2_0f2x0")
-ShallowSpawnChance = 0.05
-DeepSpawnChance = 0.1
+ShallowSpawnChance = 0.08
+DeepSpawnChance = 0.15
 Resources = Array[ExtResource("7_jdl1g")]([ExtResource("8_orqkw"), ExtResource("9_e7nyu")])
 metadata/_custom_type_script = "uid://bwxynxqwm0m3r"
 
 [sub_resource type="Resource" id="Resource_fc4wm"]
 script = ExtResource("2_0f2x0")
 Tier = 3
-ShallowSpawnChance = 0.005
-DeepSpawnChance = 0.01
+ShallowSpawnChance = 0.01
+DeepSpawnChance = 0.02
 Resources = Array[ExtResource("7_jdl1g")]([ExtResource("10_ywdar"), ExtResource("11_at0ox")])
+metadata/_custom_type_script = "uid://bwxynxqwm0m3r"
+
+[sub_resource type="Resource" id="Resource_l4pmc"]
+script = ExtResource("2_0f2x0")
+Tier = 4
+ShallowSpawnChance = 0.001
+DeepSpawnChance = 0.01
+MinimumDepth = 32
+Resources = Array[ExtResource("7_jdl1g")]([ExtResource("12_7eyef")])
 metadata/_custom_type_script = "uid://bwxynxqwm0m3r"
 
 [resource]
 script = ExtResource("3_eupqy")
 BaseResources = Array[ExtResource("1_xsxmd")]([SubResource("Resource_vqrxc"), SubResource("Resource_cv1xr"), SubResource("Resource_kcecv"), SubResource("Resource_ywbao")])
-RewardTiers = Array[ExtResource("2_0f2x0")]([SubResource("Resource_evly7"), SubResource("Resource_fc4wm")])
+RewardTiers = Array[ExtResource("2_0f2x0")]([SubResource("Resource_evly7"), SubResource("Resource_fc4wm"), SubResource("Resource_l4pmc")])
 metadata/_custom_type_script = "uid://bt1enlyw6fylx"

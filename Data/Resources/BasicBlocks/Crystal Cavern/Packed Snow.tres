@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://dpsgmvxldrxh0"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_ka0eg"]
+
+[resource]
+script = ExtResource("1_ka0eg")
+DisplayName = "Packed Snow"
+SellValue = 3
+DisplayColor = Color(0.7490196, 0.8901961, 0.9490196, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

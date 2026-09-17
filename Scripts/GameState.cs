@@ -5,7 +5,7 @@ using System.Text.Json;
 
 public partial class GameState : Node
 {
-	private const string SavePath = "user://desktop_digger_save.json";
+	private const string SavePath = "user://desktop_digger_demo_save.json";
 	private readonly HashSet<string> unlockedWorldIds = new();
 	private readonly HashSet<string> unlockedAutorunIds = new();
 
@@ -17,7 +17,7 @@ public partial class GameState : Node
 	private const int MaxStorageCapacity = 7200;
 	private const int MaxRemovedLayers = 32;
 	private const int BaseSpeedUpgradeCost = 75;
-	private const float SpeedIncreasePerUpgrade = 0.20f;
+	private const float SpeedIncreasePerUpgrade = 0.25f;
 
 	private readonly Dictionary<string, WorldProgress> worldProgress = new();
 
@@ -33,13 +33,13 @@ public partial class GameState : Node
 		BaseStorageCapacity + StorageUpgradeLevel * StoragePerUpgrade;
 
 	public int NextStorageUpgradeCost =>
-		BaseStorageUpgradeCost * (StorageUpgradeLevel + 1);
+		BaseStorageUpgradeCost * (StorageUpgradeLevel * 2);
 
 	public int SelectedWorldRemovedLayers =>
 		GetSelectedWorldProgress().RemovedLayers;
 
 	public int NextSelectedWorldLayerRemovalCost =>
-		BaseLayerRemovalCost * (SelectedWorldRemovedLayers + 1);
+		BaseLayerRemovalCost * (SelectedWorldRemovedLayers * 2);
 
 	public bool CanRemoveSelectedWorldLayer =>
 		SelectedWorldRemovedLayers < MaxRemovedLayers;

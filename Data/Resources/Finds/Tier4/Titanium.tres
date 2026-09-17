@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://p44xy2s1668p"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_x0qk6"]
+
+[resource]
+script = ExtResource("1_x0qk6")
+DisplayName = "Titanium"
+SellValue = 150
+DisplayColor = Color(0.5294118, 0.5254902, 0.5058824, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

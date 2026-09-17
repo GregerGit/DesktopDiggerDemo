@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceDefinition" format=3 uid="uid://c56x1fn6blwbe"]
+
+[ext_resource type="Script" uid="uid://demhkvgh0bms" path="res://Scripts/ResourceDefinition.cs" id="1_p88sh"]
+
+[resource]
+script = ExtResource("1_p88sh")
+DisplayName = "Crystallized Debris"
+SellValue = 3
+DisplayColor = Color(0.17254902, 0.43137255, 0.61960787, 1)
+metadata/_custom_type_script = "uid://demhkvgh0bms"

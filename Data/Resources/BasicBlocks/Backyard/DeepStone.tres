@@ -5,5 +5,6 @@
 [resource]
 script = ExtResource("1_ukyis")
 DisplayName = "Deep Stone"
+SellValue = 3
 DisplayColor = Color(0.2901961, 0.2901961, 0.33333334, 1)
 metadata/_custom_type_script = "uid://demhkvgh0bms"

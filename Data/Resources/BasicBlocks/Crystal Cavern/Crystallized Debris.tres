@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_p88sh")
 DisplayName = "Crystallized Debris"
-SellValue = 3
+SellValue = 5
 DisplayColor = Color(0.17254902, 0.43137255, 0.61960787, 1)
 metadata/_custom_type_script = "uid://demhkvgh0bms"

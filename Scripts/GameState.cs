@@ -33,13 +33,13 @@ public partial class GameState : Node
 		BaseStorageCapacity + StorageUpgradeLevel * StoragePerUpgrade;
 
 	public int NextStorageUpgradeCost =>
-		BaseStorageUpgradeCost * (StorageUpgradeLevel * 2) +25;
+		BaseStorageUpgradeCost * (StorageUpgradeLevel * 2) +5;
 
 	public int SelectedWorldRemovedLayers =>
 		GetSelectedWorldProgress().RemovedLayers;
 
 	public int NextSelectedWorldLayerRemovalCost =>
-		BaseLayerRemovalCost * (SelectedWorldRemovedLayers * 2) +100;
+		BaseLayerRemovalCost * (SelectedWorldRemovedLayers * 2) +5;
 
 	public bool CanRemoveSelectedWorldLayer =>
 		SelectedWorldRemovedLayers < MaxRemovedLayers;

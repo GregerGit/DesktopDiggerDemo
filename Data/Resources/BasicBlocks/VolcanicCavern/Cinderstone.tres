@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_nyt53")
 DisplayName = "Cinderstone"
-SellValue = 2
+SellValue = 3
 DisplayColor = Color(0.22745098, 0.19607843, 0.20392157, 1)
 metadata/_custom_type_script = "uid://demhkvgh0bms"

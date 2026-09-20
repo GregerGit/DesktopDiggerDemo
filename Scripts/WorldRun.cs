@@ -332,7 +332,7 @@ public partial class WorldRun : Node3D
 			for (int z = 0; z < WorldChunk.Width; z++)
 			{
 				BlockKind baseBlock = worldChunk.GetBlock(x, z, layer);
-
+				// GD.Print($"x={x}, z={z}, layer={layer}, block={baseBlock}");
 				ResourceDefinition foundResource =
 					worldChunk.GetResource(x, z, layer);
 

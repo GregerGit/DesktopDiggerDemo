@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_e5cea")
 DisplayName = "Obsidian"
-SellValue = 2
+SellValue = 5
 DisplayColor = Color(0.41568628, 0.14117648, 0.15686275, 1)
 metadata/_custom_type_script = "uid://demhkvgh0bms"

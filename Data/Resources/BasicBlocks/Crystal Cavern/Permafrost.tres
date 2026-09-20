@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_e4ehd")
 DisplayName = "Permafrost"
-SellValue = 3
+SellValue = 6
 DisplayColor = Color(0.043137256, 0.14509805, 0.27058825, 1)
 metadata/_custom_type_script = "uid://demhkvgh0bms"

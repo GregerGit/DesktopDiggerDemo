@@ -6,6 +6,6 @@
 script = ExtResource("1_i1y6d")
 DisplayName = "Iron"
 Tier = 2
-SellValue = 10
+SellValue = 15
 DisplayColor = Color(0.7372549, 0.47843137, 0.33333334, 1)
 metadata/_custom_type_script = "uid://demhkvgh0bms"

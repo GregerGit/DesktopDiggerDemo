@@ -1,3 +1,5 @@
+using System;
+
 public enum BlockKind
 {
 	Dirt,
@@ -18,6 +20,8 @@ public sealed class WorldChunk
 
 	public int StartingDepth { get; }
 	public int RemainingLayers => TotalLayers - StartingDepth;
+	
+	private static readonly Random _rng = new Random(); //WIP
 
 	public WorldChunk(int startingDepth, MiningRewardCatalog miningRewardCatalog)
 	{
@@ -67,13 +71,27 @@ public sealed class WorldChunk
 	}
 	private BlockKind GetBlockForLayer(int layer)
 	{
-		if (layer < 16)
+		if (layer < 12)
 			return BlockKind.Dirt;
+
+		if (layer < 18) 
+		{
+			// Dirt -> Stone blend: 0% at 12, 100% at 18
+			float stoneChance = (layer - 12) / 6f;
+			return _rng.NextDouble() < stoneChance ? BlockKind.Stone : BlockKind.Dirt;
+		}
 
 		if (layer < 32)
 			return BlockKind.Stone;
 
-		if (layer < 48)
+		if (layer < 38)
+		{
+			// Stone -> DeepStone blend: 0% at 32, 100% at 38
+			float deepStoneChance = (layer - 32) / 6f;
+			return _rng.NextDouble() < deepStoneChance ? BlockKind.DeepStone : BlockKind.Stone;
+		}
+
+		if (layer < 56)
 			return BlockKind.DeepStone;
 
 		return BlockKind.Bedrock;

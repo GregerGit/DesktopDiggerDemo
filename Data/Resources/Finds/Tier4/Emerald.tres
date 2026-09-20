@@ -5,6 +5,7 @@
 [resource]
 script = ExtResource("1_5bkjc")
 DisplayName = "Emerald"
+Tier = 4
 SellValue = 150
 DisplayColor = Color(0.3137255, 0.78431374, 0.47058824, 1)
 metadata/_custom_type_script = "uid://demhkvgh0bms"

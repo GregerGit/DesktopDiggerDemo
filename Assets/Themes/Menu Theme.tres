@@ -1,5 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://ddl38ed1m11mh"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6oax"]
+bg_color = Color(0.32156864, 0.15686275, 0.007843138, 0.29411766)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shv8k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsxkb"]
@@ -18,7 +21,7 @@ border_blend = true
 
 [resource]
 default_font_size = 16
-Button/styles/disabled = null
+Button/styles/disabled = SubResource("StyleBoxFlat_n6oax")
 Button/styles/focus = SubResource("StyleBoxFlat_shv8k")
 Button/styles/hover = SubResource("StyleBoxFlat_rsxkb")
 Button/styles/normal = SubResource("StyleBoxFlat_vgm25")

@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Desktop Digger"
+config/version="0.3"
 run/main_scene="uid://ebk2p0da5wyi"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://e42o6cldrxfk"
 
 [autoload]
 
@@ -21,6 +22,8 @@ GameState="*uid://caggdnqfvu3ed"
 
 [display]
 
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 

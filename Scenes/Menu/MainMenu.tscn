@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b2aif2boxw15i" path="res://Scripts/WorldDefinition.cs" id="2_s3ie0"]
 [ext_resource type="Resource" uid="uid://ckv2l80f1tppm" path="res://Data/Worlds/VolcanicCavern.tres" id="4_p4pvn"]
 [ext_resource type="Resource" uid="uid://djoiobvwcfl71" path="res://Data/Worlds/CrystalCave.tres" id="5_s3ie0"]
+[ext_resource type="Theme" uid="uid://ddl38ed1m11mh" path="res://Assets/Themes/Menu Theme.tres" id="6_rsxkb"]
 
 [node name="MainMenu" type="Control" unique_id=656047405 node_paths=PackedStringArray("stashLabel", "worldSelector", "upgradeStorageButton", "upgradeSpeedButton", "removeWorldLayerButton", "startMissionButton", "unlockWorldButton", "unlockAutorunButton", "autoRunCheckButton", "autoRunChargesLabel")]
 layout_mode = 3
@@ -39,6 +40,7 @@ custom_minimum_size = Vector2(400, 500)
 custom_maximum_size = Vector2(500, 500)
 propagate_maximum_size = false
 layout_mode = 2
+theme = ExtResource("6_rsxkb")
 
 [node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1585662123]
 layout_mode = 2
@@ -52,6 +54,12 @@ horizontal_alignment = 1
 
 [node name="StashLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1629552328]
 layout_mode = 2
+horizontal_alignment = 1
+
+[node name="empty space5" type="Label" parent="CenterContainer/VBoxContainer" unique_id=625915218]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = " "
 horizontal_alignment = 1
 
 [node name="WorldSelector" type="OptionButton" parent="CenterContainer/VBoxContainer" unique_id=22343916]

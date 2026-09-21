@@ -197,8 +197,9 @@ public partial class MainMenu : Control
 		var gameState = GetNode<GameState>("/root/GameState");
 		bool worldIsUnlocked = gameState.IsSelectedWorldUnlocked();
 		bool autoRunIsUnlocked = gameState.IsSelectedWorldAutoUnlocked();
-		bool CanRemoveLayer = gameState.CanRemoveSelectedWorldLayer;
 
+		bool CanRemoveLayer = gameState.CanRemoveSelectedWorldLayer;
+		bool CanUpgradeStorage = gameState.CanUpgradeStorage;
 		bool hasCharges = gameState.AutoRunCharges > 0;
 
 		stashLabel.Text =
@@ -207,8 +208,7 @@ public partial class MainMenu : Control
 			$"Miner speed: {gameState.SelectedWorldMinerSpeedMultiplier:0.0}x\n" +
 			$"Layers removed: {gameState.SelectedWorldRemovedLayers}";
 
-		upgradeStorageButton.Text =
-			$"Increase storage by 25 (${gameState.NextStorageUpgradeCost})";
+		
 
 		upgradeStorageButton.Disabled =
 			!gameState.CanUpgradeStorage ||
@@ -234,7 +234,17 @@ public partial class MainMenu : Control
 			removeWorldLayerButton.Text =
 				$"Max depth reached in this area";
 		}
-		
+
+		if (CanUpgradeStorage)
+		{
+			upgradeStorageButton.Text =
+				$"Increase storage by 25 (${gameState.NextStorageUpgradeCost})";
+		}
+		else
+		{
+			upgradeStorageButton.Text =
+				$"Max storage";
+		}
 		
 
 		removeWorldLayerButton.Disabled =

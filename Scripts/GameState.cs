@@ -12,7 +12,7 @@ public partial class GameState : Node
 	private const int BaseStorageCapacity = 25;
 	private const int StoragePerUpgrade = 25;
 	private const int BaseStorageUpgradeCost = 50;
-	private const int BaseLayerRemovalCost = 100;
+	private const int BaseLayerRemovalCost = 75;
 
 	private const int MaxStorageCapacity = 7200;
 	private const int MaxRemovedLayers = 32;
@@ -33,13 +33,13 @@ public partial class GameState : Node
 		BaseStorageCapacity + StorageUpgradeLevel * StoragePerUpgrade;
 
 	public int NextStorageUpgradeCost =>
-		BaseStorageUpgradeCost * (StorageUpgradeLevel * 2) +5;
+		BaseStorageUpgradeCost * (StorageUpgradeLevel * 2) + 50;
 
 	public int SelectedWorldRemovedLayers =>
 		GetSelectedWorldProgress().RemovedLayers;
 
 	public int NextSelectedWorldLayerRemovalCost =>
-		BaseLayerRemovalCost * (SelectedWorldRemovedLayers * 2) +5;
+		BaseLayerRemovalCost * (SelectedWorldRemovedLayers * 2) + 75;
 
 	public bool CanRemoveSelectedWorldLayer =>
 		SelectedWorldRemovedLayers < MaxRemovedLayers;
@@ -310,5 +310,25 @@ public partial class GameState : Node
 		{
 			GD.PushWarning($"Could not load save data: {exception.Message}");
 		}
+	}
+
+	public void TryResetSaveFile()
+	{
+		// Reset in-memory state to defaults
+		StashMoney = 0;
+		StorageUpgradeLevel = 0;
+		SelectedWorldId = "0";
+
+		unlockedWorldIds.Clear();
+		unlockedAutorunIds.Clear();
+		worldProgress.Clear();
+
+		// Remove the save file so nothing stale gets reloaded
+		if (FileAccess.FileExists(SavePath))
+		{
+			OS.MoveToTrash(ProjectSettings.GlobalizePath(SavePath));
+		}
+
+		GD.Print("Save data reset.");
 	}
 }

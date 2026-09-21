@@ -12,6 +12,8 @@ public partial class MainMenu : Control
 	[Export] private Button unlockAutorunButton = null!;
 	[Export] private CheckButton autoRunCheckButton = null!;
 	[Export] private Label autoRunChargesLabel = null!;
+	[Export] private Button resetSaveFile = null!;
+	[Export] private ConfirmationDialog resetSaveFileConfirmation = null!;
 
 	[Export] private Godot.Collections.Array<WorldDefinition> availableWorlds = new();
 
@@ -29,6 +31,9 @@ public partial class MainMenu : Control
 		worldSelector.ItemSelected += SelectWorld;
 		autoRunCheckButton.Toggled += OnAutoRunToggled;
 		unlockAutorunButton.Pressed += UnlockSelectedWorldAutoRun;
+		resetSaveFile.Pressed += ResetSaveConfirmation;
+		resetSaveFileConfirmation.Confirmed += ResetSaveFile;
+	
 		PopulateWorldSelector();
 		TryBeginAutoRunCountdown();
 	}
@@ -190,6 +195,18 @@ public partial class MainMenu : Control
 
 		gameState.TryRemoveSelectedWorldLayer();
 		UpdateMenu();
+	}
+	private void ResetSaveConfirmation()
+	{
+		resetSaveFileConfirmation.PopupCentered();
+	}
+	private void ResetSaveFile()
+	{
+		var gameState = GetNode<GameState>("/root/GameState");
+
+		gameState.TryResetSaveFile();
+		UpdateMenu();
+		
 	}
 
 	private void UpdateMenu()

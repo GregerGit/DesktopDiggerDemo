@@ -7,7 +7,16 @@
 [ext_resource type="Resource" uid="uid://djoiobvwcfl71" path="res://Data/Worlds/CrystalCave.tres" id="5_s3ie0"]
 [ext_resource type="Theme" uid="uid://ddl38ed1m11mh" path="res://Assets/Themes/Menu Theme.tres" id="6_rsxkb"]
 
-[node name="MainMenu" type="Control" unique_id=656047405 node_paths=PackedStringArray("stashLabel", "worldSelector", "upgradeStorageButton", "upgradeSpeedButton", "removeWorldLayerButton", "startMissionButton", "unlockWorldButton", "unlockAutorunButton", "autoRunCheckButton", "autoRunChargesLabel")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsxkb"]
+bg_color = Color(0.5921569, 0, 0.101960786, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.15294118)
+border_blend = true
+
+[node name="MainMenu" type="Control" unique_id=656047405 node_paths=PackedStringArray("stashLabel", "worldSelector", "upgradeStorageButton", "upgradeSpeedButton", "removeWorldLayerButton", "startMissionButton", "unlockWorldButton", "unlockAutorunButton", "autoRunCheckButton", "autoRunChargesLabel", "resetSaveFile", "resetSaveFileConfirmation")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,18 +34,23 @@ unlockWorldButton = NodePath("CenterContainer/VBoxContainer/UnlockWorldButton")
 unlockAutorunButton = NodePath("CenterContainer/VBoxContainer/UnlockAutoRunButton")
 autoRunCheckButton = NodePath("CenterContainer/VBoxContainer/CheckButton")
 autoRunChargesLabel = NodePath("CenterContainer/VBoxContainer/AutoRunChargesLabel")
+resetSaveFile = NodePath("CenterContainer/VBoxContainer/ResetSaveFile")
+resetSaveFileConfirmation = NodePath("CenterContainer/VBoxContainer/ResetSaveConfirmationDialog")
 availableWorlds = Array[ExtResource("2_s3ie0")]([ExtResource("2_mj0i0"), ExtResource("4_p4pvn"), ExtResource("5_s3ie0")])
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1271676482]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -225.0
+offset_top = 25.0
+offset_right = 225.00006
+offset_bottom = 525.00006
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=528368730]
-custom_minimum_size = Vector2(400, 500)
+custom_minimum_size = Vector2(450, 750)
 custom_maximum_size = Vector2(500, 500)
 propagate_maximum_size = false
 layout_mode = 2
@@ -134,3 +148,24 @@ horizontal_alignment = 1
 [node name="StartMissionButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=118513981]
 layout_mode = 2
 text = "Start First World"
+
+[node name="empty space6" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1220091106]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = " "
+horizontal_alignment = 1
+
+[node name="empty space7" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1900209223]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = " "
+horizontal_alignment = 1
+
+[node name="ResetSaveFile" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1036728824]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_rsxkb")
+text = "Reset save file"
+
+[node name="ResetSaveConfirmationDialog" type="ConfirmationDialog" parent="CenterContainer/VBoxContainer" unique_id=160935098]
+oversampling_override = 1.0
+dialog_text = "This will permanently delete your save. Continue?"

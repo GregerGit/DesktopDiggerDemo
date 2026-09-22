@@ -4,6 +4,7 @@
 bg_color = Color(0.32156864, 0.15686275, 0.007843138, 0.29411766)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shv8k"]
+bg_color = Color(0.47058824, 0.23921569, 0.015686275, 0.5882353)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsxkb"]
 bg_color = Color(0.47058824, 0.23921569, 0.015686275, 0.5882353)

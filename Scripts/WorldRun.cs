@@ -16,7 +16,7 @@ public partial class WorldRun : Node3D
 	
 	private Camera3D camera = null!;
 	private int currentMiningLayer;
-	private float cameraDistanceScale = 0.8f; 
+	private float cameraDistanceScale = 0.6f; 
 
 	private RunInventory inventory = null!;
 	private Label statusLabel;
@@ -312,7 +312,7 @@ public partial class WorldRun : Node3D
 	private void UpdateCameraForCurrentLayer()
 	{
 		Vector3 target = new Vector3(0f, -currentMiningLayer, 0f);
-		Vector3 baseOffset = new Vector3(16f, 8f, 16f); // your current offset: (16, 11-3, 16)
+		Vector3 baseOffset = new Vector3(14f, 8.5f, 14f); // your current offset: (16, 11-3, 16)
 
 		camera.Position = target + baseOffset * cameraDistanceScale;
 		camera.LookAt(target);
@@ -400,7 +400,7 @@ public partial class WorldRun : Node3D
 		miner.Name = "Miner";
 		
 		AddChild(miner);
-		miner.Position = new Vector3(0f, CurrentMinerHeight, 0f);
+		miner.Position = new Vector3(0f, CurrentMinerHeight - 2f, 0f);
 		miner.Scale = minerBaseScale;
 		
 	}

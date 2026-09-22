@@ -18,9 +18,11 @@ border_blend = true
 
 [node name="MainMenu" type="Control" unique_id=656047405 node_paths=PackedStringArray("stashLabel", "worldSelector", "upgradeStorageButton", "upgradeSpeedButton", "removeWorldLayerButton", "startMissionButton", "unlockWorldButton", "unlockAutorunButton", "autoRunCheckButton", "autoRunChargesLabel", "resetSaveFile", "resetSaveFileConfirmation")]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a2ivp")
@@ -39,18 +41,16 @@ resetSaveFileConfirmation = NodePath("CenterContainer/VBoxContainer/ResetSaveCon
 availableWorlds = Array[ExtResource("2_s3ie0")]([ExtResource("2_mj0i0"), ExtResource("4_p4pvn"), ExtResource("5_s3ie0")])
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=1271676482]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -225.0
-offset_top = 25.0
-offset_right = 225.00006
-offset_bottom = 525.00006
-grow_horizontal = 2
+propagate_maximum_size = false
+layout_mode = 0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 280.0
+pivot_offset = Vector2(640, 360)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=528368730]
-custom_minimum_size = Vector2(450, 750)
+custom_minimum_size = Vector2(350, 800)
 custom_maximum_size = Vector2(500, 500)
 propagate_maximum_size = false
 layout_mode = 2
@@ -168,4 +168,8 @@ text = "Reset save file"
 
 [node name="ResetSaveConfirmationDialog" type="ConfirmationDialog" parent="CenterContainer/VBoxContainer" unique_id=160935098]
 oversampling_override = 1.0
+position = Vector2i(0, 36)
+size = Vector2i(400, 100)
+ok_button_text = "Yes"
 dialog_text = "This will permanently delete your save. Continue?"
+cancel_button_text = "No"

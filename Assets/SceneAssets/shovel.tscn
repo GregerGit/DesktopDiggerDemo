@@ -19,6 +19,7 @@ albedo_color = Color(0.21950102, 0.21950102, 0.21950102, 0.68235296)
 height = 0.045043945
 
 [node name="ShovelMesh" type="MeshInstance3D" unique_id=360520908]
+transform = Transform3D(1, 0, 0, 0, 0.9998846, -0.015192779, 0, 0.015192779, 0.9998846, 0, -0.49745965, 0)
 
 [node name="ShovelHead" type="MeshInstance3D" parent="." unique_id=419112993]
 transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 0.20764947, 0, 0, 0)
@@ -35,7 +36,7 @@ transform = Transform3D(-8.700484e-09, -0.3480522, 0, 0.19904387, -1.5213844e-08
 material_override = SubResource("StandardMaterial3D_vx47s")
 mesh = SubResource("CylinderMesh_vx47s")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=985067114]
-transform = Transform3D(1, 0, 0, 0, 0.07418603, 0, 0, 0, 1, 0, -1.0819461, 0)
+[node name="Shadow" type="MeshInstance3D" parent="." unique_id=985067114]
+transform = Transform3D(1, 0, 0, 0, 0.07418603, 0, 0, 3.4924597e-10, 1, 0, -0.9515806, -0.0019808486)
 material_override = SubResource("StandardMaterial3D_qojaw")
 mesh = SubResource("CylinderMesh_vgm25")

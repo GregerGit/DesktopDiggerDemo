@@ -20,10 +20,23 @@ border_width_bottom = 2
 border_color = Color(0, 0, 0, 0.15294118)
 border_blend = true
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ykvod"]
+bg_color = Color(0.47058824, 0.23921569, 0.015686275, 0.5882353)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.15294118)
+
 [resource]
 default_font_size = 16
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
 Button/styles/disabled = SubResource("StyleBoxFlat_n6oax")
 Button/styles/focus = SubResource("StyleBoxFlat_shv8k")
 Button/styles/hover = SubResource("StyleBoxFlat_rsxkb")
 Button/styles/normal = SubResource("StyleBoxFlat_vgm25")
-Button/styles/pressed = null
+Button/styles/pressed = SubResource("StyleBoxFlat_ykvod")
+Label/colors/font_color = Color(0.9922163, 0.6700778, 0.43813452, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 1
+Label/font_sizes/font_size = 16

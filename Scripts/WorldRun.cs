@@ -280,7 +280,7 @@ public partial class WorldRun : Node3D
 			AmbientLightColor = world.AmbientLightColor,
 			AmbientLightEnergy = world.AmbientLightEnergy
 		};
-
+				
 		AddChild(new WorldEnvironment { Environment = environment });
 	}
 

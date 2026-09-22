@@ -8,7 +8,7 @@
 [ext_resource type="Theme" uid="uid://ddl38ed1m11mh" path="res://Assets/Themes/Menu Theme.tres" id="6_rsxkb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rsxkb"]
-bg_color = Color(0.5921569, 0, 0.101960786, 1)
+bg_color = Color(0.7647059, 0.011764706, 0, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -76,6 +76,11 @@ theme_override_font_sizes/font_size = 12
 text = " "
 horizontal_alignment = 1
 
+[node name="WorldSelectorLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=280619094]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "World Selector"
+
 [node name="WorldSelector" type="OptionButton" parent="CenterContainer/VBoxContainer" unique_id=22343916]
 layout_mode = 2
 alignment = 1
@@ -91,9 +96,8 @@ horizontal_alignment = 1
 
 [node name="DiggerUpgradeLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=260468207]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 16
 text = "Digger upgrade - Global"
-horizontal_alignment = 1
 
 [node name="UpgradeStorageButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=67850729]
 layout_mode = 2
@@ -107,9 +111,8 @@ horizontal_alignment = 1
 
 [node name="WorldUpgradeLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=22638016]
 layout_mode = 2
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 16
 text = "World upgrade - Local"
-horizontal_alignment = 1
 
 [node name="UpgradeSpeedButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1673938119]
 layout_mode = 2
@@ -130,7 +133,7 @@ layout_mode = 2
 
 [node name="AutoRunChargesLabel" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1062278390]
 layout_mode = 2
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 16
 
 [node name="CheckButton" type="CheckButton" parent="CenterContainer/VBoxContainer" unique_id=89709942]
 layout_mode = 2

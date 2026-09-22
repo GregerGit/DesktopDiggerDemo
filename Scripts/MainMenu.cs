@@ -222,7 +222,7 @@ public partial class MainMenu : Control
 		stashLabel.Text =
 			$"Stash: ${gameState.StashMoney}\n" +
 			$"Miner storage: {gameState.MinerStorageCapacity}\n" +
-			$"Miner speed: {gameState.SelectedWorldMinerSpeedMultiplier:0.0}x\n" +
+			$"Miner speed: {gameState.SelectedWorldMinerSpeedMultiplier:0.00}x\n" +
 			$"Layers removed: {gameState.SelectedWorldRemovedLayers}";
 
 		

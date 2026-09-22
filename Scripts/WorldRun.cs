@@ -44,6 +44,10 @@ public partial class WorldRun : Node3D
 
 	private float CurrentMinerHeight => MinerHeight - currentMiningLayer;
 
+
+	private static readonly PackedScene MinerScene = GD.Load<PackedScene>("res://Assets/SceneAssets/shovel.tscn"); //WIP
+	private Vector3 minerBaseScale = new Vector3(0.5f, 0.5f, 0.5f); //WIP
+
 	public override void _Ready()
 	{
 		gameState = GetNode<GameState>("/root/GameState");
@@ -392,19 +396,27 @@ public partial class WorldRun : Node3D
 	}
 	private void CreateMinerPreview()
 	{
-		miner = new MeshInstance3D
-		{
-			Name = "Miner",
-			Mesh = new CapsuleMesh
-			{
-				Radius = 0.32f,
-				Height = 1.15f
-			},
-			MaterialOverride = CreateMaterial(new Color("#EDEDED")),
-			Position = new Vector3(0f, CurrentMinerHeight, 0f)
-		};
+		miner = MinerScene.Instantiate<MeshInstance3D>();
+		miner.Name = "Miner";
+		miner.Position = new Vector3(0f, CurrentMinerHeight, 0f);
+			
+			
+		// miner = new MeshInstance3D
+		// {
+		// 	Name = "Miner",
+		// 	Mesh = new CapsuleMesh
+		// 	{
+		// 		Radius = 0.32f,
+		// 		Height = 1.15f
+		// 	},
+		// 	MaterialOverride = CreateMaterial(new Color("#EDEDED")),
+		// 	Position = new Vector3(0f, CurrentMinerHeight, 0f)
+		// };
 
 		AddChild(miner);
+		miner.Position = new Vector3(0f, CurrentMinerHeight, 0f);
+		miner.Scale = minerBaseScale;
+		
 	}
 
 	private void AddBlock(
@@ -482,10 +494,11 @@ public partial class WorldRun : Node3D
 		);
 
 		miner.Scale = new Vector3(
-			1f + squash,
-			1f - squash,
-			1f + squash
+			minerBaseScale.X * (1f + squash),
+			minerBaseScale.Y * (1f - squash),
+			minerBaseScale.Z * (1f + squash)
 		);
+		
 	}
 
 	private void AnimateMining()
@@ -499,9 +512,9 @@ public partial class WorldRun : Node3D
 		);
 
 		miner.Scale = new Vector3(
-			1f + impact * 0.12f,
-			1f - impact * 0.18f,
-			1f + impact * 0.12f
+			minerBaseScale.X * (1f + impact * 0.12f),
+			minerBaseScale.Y * (1f - impact * 0.18f),
+			minerBaseScale.Z * (1f + impact * 0.12f)
 		);
 	}
 
@@ -513,6 +526,6 @@ public partial class WorldRun : Node3D
 			miner.Position.Z
 		);
 
-		miner.Scale = Vector3.One;
+		miner.Scale = minerBaseScale;
 	}
 }

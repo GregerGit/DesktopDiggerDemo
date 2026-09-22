@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cf2o8hadbhvkb"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xujko"]
-albedo_color = Color(0.38928655, 0.38928664, 0.38928658, 1)
+albedo_color = Color(0.6052743, 0.6052743, 0.6052743, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_vgm25"]
 
@@ -11,6 +11,12 @@ albedo_color = Color(0.62189883, 0.27088287, 0.020309059, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_qojaw"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_vx47s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qojaw"]
+albedo_color = Color(0.21950102, 0.21950102, 0.21950102, 0.68235296)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_vgm25"]
+height = 0.045043945
 
 [node name="ShovelMesh" type="MeshInstance3D" unique_id=360520908]
 
@@ -28,3 +34,8 @@ mesh = SubResource("CylinderMesh_qojaw")
 transform = Transform3D(-8.700484e-09, -0.3480522, 0, 0.19904387, -1.5213844e-08, 0, 0, 0, 0.1716479, 0, 2.299261, 0)
 material_override = SubResource("StandardMaterial3D_vx47s")
 mesh = SubResource("CylinderMesh_vx47s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=985067114]
+transform = Transform3D(1, 0, 0, 0, 0.07418603, 0, 0, 0, 1, 0, -1.0819461, 0)
+material_override = SubResource("StandardMaterial3D_qojaw")
+mesh = SubResource("CylinderMesh_vgm25")

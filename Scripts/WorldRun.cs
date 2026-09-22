@@ -398,21 +398,7 @@ public partial class WorldRun : Node3D
 	{
 		miner = MinerScene.Instantiate<MeshInstance3D>();
 		miner.Name = "Miner";
-		miner.Position = new Vector3(0f, CurrentMinerHeight, 0f);
-			
-			
-		// miner = new MeshInstance3D
-		// {
-		// 	Name = "Miner",
-		// 	Mesh = new CapsuleMesh
-		// 	{
-		// 		Radius = 0.32f,
-		// 		Height = 1.15f
-		// 	},
-		// 	MaterialOverride = CreateMaterial(new Color("#EDEDED")),
-		// 	Position = new Vector3(0f, CurrentMinerHeight, 0f)
-		// };
-
+		
 		AddChild(miner);
 		miner.Position = new Vector3(0f, CurrentMinerHeight, 0f);
 		miner.Scale = minerBaseScale;
